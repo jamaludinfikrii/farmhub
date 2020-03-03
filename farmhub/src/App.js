@@ -8,7 +8,10 @@ class App extends React.Component{
         return(
             <div>
                 <FarmHubNavbar/>
+                <div className='container-fluid' style={{minHeight:'80vh'}}>
                 <h1>Welcome to FarmHub</h1>
+
+                </div>
 
                 <FooterFarmHub/>
             </div>
