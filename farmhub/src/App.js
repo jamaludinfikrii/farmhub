@@ -1,6 +1,7 @@
 import React from 'react'
 import FarmHubNavbar from './components/Navbar'
 import FooterFarmHub from './components/Footer'
+import ProductList from './pages/ProductList'
 
 
 class App extends React.Component{
@@ -8,9 +9,9 @@ class App extends React.Component{
         return(
             <div>
                 <FarmHubNavbar/>
+                
                 <div className='container-fluid' style={{minHeight:'80vh'}}>
-                <h1>Welcome to FarmHub</h1>
-
+                    <ProductList/>
                 </div>
 
                 <FooterFarmHub/>
