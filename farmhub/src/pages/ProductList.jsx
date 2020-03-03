@@ -1,4 +1,5 @@
 import React from 'react'
+import { FormGroup,Label,Input } from 'reactstrap'
 import './../supports/css/ProductList.css'
 
 
@@ -9,8 +10,32 @@ class ProductList extends React.Component{
             <div className='container-fluid'>
                 <div className='row'>
 
-                    <div className="col-sm-2">
-                        ini buat filtering
+                    <div className="col-sm-2 mt-3">
+                        <div className='my-card p-3'>
+                            <div className="farmhub-product-title">
+                                Filter By Category
+                            </div>
+                            <div className='farmhub-product-location'>
+                                <FormGroup check>
+                                    <Label check>
+                                    <Input type="checkbox" />{' '}
+                                    Buah Buahan
+                                    </Label>
+                                </FormGroup>
+                                <FormGroup check>
+                                    <Label check>
+                                    <Input type="checkbox" />{' '}
+                                    Sayuran
+                                    </Label>
+                                </FormGroup>
+                                <FormGroup check>
+                                    <Label check>
+                                    <Input type="checkbox" />{' '}
+                                    Rempah Rempah
+                                    </Label>
+                                </FormGroup>
+                            </div>
+                        </div>
                     </div>
 
                     <div className="col-sm-10">
