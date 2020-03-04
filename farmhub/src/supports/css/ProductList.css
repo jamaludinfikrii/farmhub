@@ -27,3 +27,9 @@
 }
 
 
+.my-fixed-filter{
+    position: sticky;
+    top: 10px;
+}
+
+
