@@ -1,0 +1,25 @@
+{
+    "users" : [
+        {
+            "id" : 1 ,
+            "email" : "fikri@fikri.com" ,
+            "password" : "123123", 
+            "role" : "penjual" ,
+            "fullname" : "jamaludin fikri",
+            "address" : "bandung",
+            "phone_number" : "08234723847" 
+        }
+    ],
+
+    "products" : [
+        {
+            "id" : 1,
+            "name" : "Apel Fuji",
+            "price" : "20000",
+            "stock" : 20,
+            "img_url" : "url_image",
+            "id_penjual" : 1,
+            "deskripsi" : "Apel Import Berkualitas"
+        }
+    ]
+}

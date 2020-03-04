@@ -1,0 +1,29 @@
+var arr = [4,5,3]
+
+var newArr = arr.map((val,index) => {
+    return val *2
+})
+
+
+
+
+var data = [
+    {todo : "mandi",user : "fikri"},
+    {todo : "tidur" ,user : "budi"}
+]
+
+var output = data.map((val) => {
+    return(
+        `<li className='list-group-item'> 
+             {${val.todo} + " " + '(' +${val.user} + ')'} 
+             <span onClick={() => alert(val.todo)} className='btn btn-outline-danger ml-3'>delete</span> 
+             <span className='btn btn-outline-info ml-3'>edit</span> 
+         </li>`
+    )
+})
+console.log(output)
+
+
+// map => create new array based on existing
+
+console.log(newArr)

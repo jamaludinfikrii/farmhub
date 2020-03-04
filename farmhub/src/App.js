@@ -6,13 +6,13 @@ import Login from './pages/Login'
 import { Route } from 'react-router-dom'
 import Register from './pages/Register'
 import ProductDetail from './pages/ProductDetail'
+import LatihanFakeApi from './pages/LatihanFakeApi'
 
 class App extends React.Component{
     render(){
         return(
             <div>
                 <FarmHubNavbar/>
-                
                 <div className='container-fluid my-5 pb-5' style={{minHeight:'80vh'}}>
                     <Route path='/' exact>
                         <ProductList/>
@@ -25,6 +25,9 @@ class App extends React.Component{
                     </Route>
                     <Route path='/product-detail'>
                         <ProductDetail/>
+                    </Route>
+                    <Route path='/latihan-fake-api'>
+                        <LatihanFakeApi/>
                     </Route>
                 </div>
 

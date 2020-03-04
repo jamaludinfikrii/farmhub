@@ -5,8 +5,7 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
-  NavLink
+  NavItem
 } from 'reactstrap';
 
 import { Link } from 'react-router-dom'
@@ -29,23 +28,17 @@ class FarmHubNavbar extends React.Component{
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                     <Nav className="mr-auto" navbar> 
-                        <Link to='/'>
-                            <NavItem>
-                                <NavLink>Products</NavLink>
-                            </NavItem>
-                        </Link>
+                        <NavItem>
+                            <Link to='/' >Products</Link >
+                        </NavItem>
                     </Nav>
                     <Nav navbar>
-                        <Link to='/login'>
-                            <NavItem>
-                                <NavLink>Login</NavLink>
-                            </NavItem>
-                        </Link>
-                        <Link to='/register'>
-                            <NavItem>
-                                <NavLink>Register</NavLink>
-                            </NavItem>
-                        </Link>
+                        <NavItem>
+                            <Link to='/login'>Login</Link>
+                        </NavItem>
+                        <NavItem>
+                            <Link to='/register'>Register</Link>
+                        </NavItem>
                     </Nav> 
                     </Collapse>
                 </Navbar>
