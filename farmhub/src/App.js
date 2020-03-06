@@ -7,6 +7,8 @@ import { Route } from 'react-router-dom'
 import Register from './pages/Register'
 import ProductDetail from './pages/ProductDetail'
 import LatihanFakeApi from './pages/LatihanFakeApi'
+import SelectRole from './pages/SelectRole'
+import CompleteYourProfile from './pages/CompleteYourProfile'
 
 class App extends React.Component{
     render(){
@@ -25,6 +27,12 @@ class App extends React.Component{
                     </Route>
                     <Route path='/product-detail'>
                         <ProductDetail/>
+                    </Route>
+                    <Route path='/select-role'>
+                        <SelectRole/>
+                    </Route>
+                    <Route path='/complete-your-profile'>
+                        <CompleteYourProfile/>
                     </Route>
                     <Route path='/latihan-fake-api'>
                         <LatihanFakeApi/>

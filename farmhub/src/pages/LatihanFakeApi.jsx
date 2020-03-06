@@ -2,9 +2,28 @@ import React from 'react'
 import Axios from 'axios'
 
 
+// render
+
+// componentdidmount
+
+// render
+
+// oper oper data
+  // datanya ada dimana?
+
+// CRUD JSON-SERVER
+ // Create ==> post
+ // Read ==> get
+ // Update ==> patch
+ // Delete ==> delete
+
+
+
 class LatihanFakeApi extends React.Component{
     state = {
-        data : []
+        data : [],
+        showEditForm : false,
+        indexSelectedToEdit : null  //0
     }
 
     componentDidMount(){
@@ -42,11 +61,19 @@ class LatihanFakeApi extends React.Component{
             .catch((err) => {
                 console.log(err)
             })
+
+            this.refs.todo.value = ''
+            this.refs.user.value = ''
         }
         else{
             alert('data harus isi semua')
         }
 
+    }
+
+    onEditBtnClick = (bebas) => {
+
+        this.setState({showEditForm : true,indexSelectedToEdit : bebas})
     }
 
     
@@ -67,22 +94,23 @@ class LatihanFakeApi extends React.Component{
         //     )
         // }
 
-        var output = this.state.data.map((val) => {
+        var output = this.state.data.map((val,index) => { // 4
             return(
-                <li className='list-group-item'> 
-                     {val.todo + " " + '(' +val.user + ')'} 
+                <li key={index} className='list-group-item'> 
+                     {val.todo +  ' - '  +val.user } 
                      <span onClick={() => this.onDeleteBtnClick(val.id)} 
                      className='btn btn-outline-danger ml-3'>delete</span> 
-                     <span className='btn btn-outline-info ml-3'>edit</span> 
+                     <span className='btn btn-outline-info ml-3' onClick={ () => this.onEditBtnClick(index)}>edit</span> 
                  </li>
             )
         })
+
         console.log(output)
         return output
     }
 
-    onDeleteBtnClick = (id) => {
-        Axios.delete('http://localhost:3001/todos/' + id)
+    onDeleteBtnClick = (bebas) => {
+        Axios.delete('http://localhost:3001/todos/' + bebas)
         .then((res) => {
             this.getDataFromApi()
             console.log(res)
@@ -90,6 +118,52 @@ class LatihanFakeApi extends React.Component{
         .catch((err) => {
             console.log(err)
         })
+    }
+    onCancelBtnClick = () => {
+        this.setState({showEditForm : false})
+    }
+
+    onSaveBtnClick = (id) => {
+        // alert(id)
+        var inputTodoEdit = this.refs.todoEdit.value ?
+         this.refs.todoEdit.value :
+         this.state.data[this.state.indexSelectedToEdit].todo
+ 
+         var inputUserEdit = this.refs.userEdit.value ? 
+         this.refs.userEdit.value : 
+         this.state.data[this.state.indexSelectedToEdit].user
+        // alert(inputTodoEdit)
+        // alert(inputUserEdit)
+        var data = {
+            todo : inputTodoEdit,
+            user : inputUserEdit
+        }
+
+        Axios.patch('http://localhost:3001/todos/' +id , data)
+        .then((res) => {
+            console.log(res)
+            this.getDataFromApi()
+            this.setState({showEditForm : false})
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
+
+    renderEditForm = () => {
+        console.log('render edit form')
+        if(this.state.showEditForm){
+            return(
+                <span>
+                    <input type='text' ref='todoEdit' placeholder={this.state.data[this.state.indexSelectedToEdit].todo} className='form-control mt-3' />
+                    <input type='text' ref='userEdit' placeholder={this.state.data[this.state.indexSelectedToEdit].user} className='form-control mt-3' />
+                    <button className='btn btn-outline-success mt-3' 
+                    onClick={() => this.onSaveBtnClick(this.state.data[this.state.indexSelectedToEdit].id)} >Save</button>
+                    <button className='btn btn-outline-danger mt-3' onClick={this.onCancelBtnClick} >Cancel</button>
+                </span>
+
+            )
+        }
     }
 
     render(){
@@ -106,6 +180,10 @@ class LatihanFakeApi extends React.Component{
                         <input type='text' ref='user' placeholder='your name?' className='form-control mt-3' />
                         <button className='btn btn-outline-primary mt-3' onClick={this.onAddBtnClick} >Add</button>
                         {/* inputannya */}
+                        
+                        <hr/>
+                        {this.renderEditForm()}
+                        
                     </div>
                 </div>
             </div>
