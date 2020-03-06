@@ -1,24 +1,24 @@
 {
   "todos": [
     {
-      "id": 3,
-      "user": "budi",
-      "todo": "jalan jalan"
-    },
-    {
-      "user": "budi",
-      "todo": "tidur",
+      "user": "fikri",
+      "todo": "makan",
       "id": 5
     },
     {
-      "user": "fikri",
-      "todo": "makan",
+      "user": "budi",
+      "todo": "jalan",
       "id": 7
     },
     {
-      "user": "fikri",
-      "todo": "makan",
-      "id": 8
+      "user": "budi",
+      "todo": "jalan",
+      "id": 7
+    },
+    {
+      "user": "budi",
+      "todo": "jalan",
+      "id": 7
     }
   ]
 }
