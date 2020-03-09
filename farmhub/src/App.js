@@ -9,18 +9,48 @@ import ProductDetail from './pages/ProductDetail'
 import LatihanFakeApi from './pages/LatihanFakeApi'
 import SelectRole from './pages/SelectRole'
 import CompleteYourProfile from './pages/CompleteYourProfile'
+import Axios from 'axios'
+import { urlApi } from './supports/constants/urlApi'
 
 class App extends React.Component{
+    state = {
+        dataUser : null,
+    }
+
+    // Setelah Render Pertamaa
+    componentDidMount (){
+        // Setiap kali refresh, bakalan ke triger
+
+        // Mengambil id di localstorage
+        var id = localStorage.getItem('id')
+
+        // Ambil data kembali
+        Axios.get(urlApi + 'users/' + id)
+        .then((res) => {
+            this.setState({dataUser : res.data})
+        } )
+        .catch((err) => {
+            console.log(err)
+        })
+    }
+
+
+
+
+    onChangeDataUser = (data) => {
+        this.setState({dataUser : data})
+    }
     render(){
+        
         return(
             <div>
-                <FarmHubNavbar/>
+                <FarmHubNavbar dataUser={this.state.dataUser} />
                 <div className='container-fluid my-5 pb-5' style={{minHeight:'80vh'}}>
                     <Route path='/' exact>
                         <ProductList/>
                     </Route>
                     <Route path='/login'>
-                        <Login/>    
+                        <Login bebas={this.onChangeDataUser} />    
                     </Route>
                     <Route path='/register'>
                         <Register/>
@@ -29,7 +59,7 @@ class App extends React.Component{
                         <ProductDetail/>
                     </Route>
                     <Route path='/select-role'>
-                        <SelectRole/>
+                        <SelectRole dataUser={this.state.dataUser}/>
                     </Route>
                     <Route path='/complete-your-profile'>
                         <CompleteYourProfile/>

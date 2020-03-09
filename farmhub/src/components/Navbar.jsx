@@ -32,14 +32,36 @@ class FarmHubNavbar extends React.Component{
                             <Link to='/' >Products</Link >
                         </NavItem>
                     </Nav>
-                    <Nav navbar>
-                        <NavItem>
-                            <Link to='/login'>Login</Link>
-                        </NavItem>
-                        <NavItem>
-                            <Link to='/register'>Register</Link>
-                        </NavItem>
-                    </Nav> 
+                    {
+                        this.props.dataUser === null ?
+                        <Nav navbar>
+                            <NavItem>
+                                <Link to='/login'>Login</Link>
+                            </NavItem>
+                            <NavItem>
+                                <Link to='/register'>Register</Link>
+                            </NavItem>
+                        </Nav> 
+                        :
+                        <Nav navbar>
+                            {
+                                this.props.dataUser.role === 'pembeli' ?
+                                <NavItem>
+                                    <Link to='/my-profile'>Cart</Link>
+                                </NavItem>
+                                :
+                                this.props.dataUser.role === 'penjual' ?
+                                <NavItem>
+                                    <Link to='/my-profile'>Post Your Product</Link>
+                                </NavItem>
+                                :
+                                null
+                            }
+                            <NavItem className='ml-md-3'>
+                                <Link to='/my-profile'>Hello , {this.props.dataUser.email}</Link>
+                            </NavItem>
+                        </Nav> 
+                    }
                     </Collapse>
                 </Navbar>
             </div>

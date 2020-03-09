@@ -2,6 +2,7 @@ import React from 'react'
 import Validator from 'validator'
 import Axios from 'axios'
 import Swal from 'sweetalert2'
+import { urlApi } from '../supports/constants/urlApi'
 
 // email harus unique
 // password and confirm password harus sama
@@ -26,7 +27,7 @@ class Register extends React.Component{
             }
 
             // check email terdaftar atau belum
-            Axios.get('http://localhost:3001/users?email=' + inputEmail)
+            Axios.get(urlApi + 'users?email=' + inputEmail)
             .then((res) => {
                 if(res.data.length > 0){
                     return this.setState({error : "Email Sudah Terdaftar"})
@@ -39,7 +40,7 @@ class Register extends React.Component{
                     address : '',
                     phone_number : ''
                 }
-                Axios.post('http://localhost:3001/users', data)
+                Axios.post(urlApi + 'users', data)
                 .then((res) => {
                     console.log(res)
                     Swal.fire('Register','Register Succes, Please login !!','success')

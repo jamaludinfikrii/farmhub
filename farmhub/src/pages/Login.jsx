@@ -2,6 +2,7 @@ import React from 'react'
 import Swal from 'sweetalert2'
 import Axios from 'axios'
 import { Redirect } from 'react-router-dom'
+import { urlApi } from '../supports/constants/urlApi'
 
 class Login extends React.Component{
     state = {
@@ -12,11 +13,18 @@ class Login extends React.Component{
         let inputPassword = this.refs.password.value
 
         if(inputEmail && inputPassword){
-            Axios.get(`http://localhost:3001/users?email=${inputEmail}&password=${inputPassword}`)
+            Axios.get(`${urlApi}users?email=${inputEmail}&password=${inputPassword}`)
             .then((res) => {
                 if(res.data.length > 0){
+                    console.log(res)
                     // Login Success
-                    console.log(res.data)
+                    var dataUser = res.data[0]
+                    this.props.bebas(dataUser)
+
+                    // Menyimpan id di localstorage
+                    localStorage.setItem('id',res.data[0].id)
+
+                    // console.log(res.data)
                     if(res.data[0].role){
                         this.setState({isComplete : true})
                         // window.location = '/'
