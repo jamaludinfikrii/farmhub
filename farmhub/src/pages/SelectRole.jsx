@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import { urlApi } from '../supports/constants/urlApi';
-import Swal from 'sweetalert2';
+
 
 class SelectRole extends Component {
     onBtnClick = (role) => {
