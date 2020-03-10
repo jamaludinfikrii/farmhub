@@ -4,7 +4,7 @@ import './../supports/css/ProductList.css'
 import Axios from 'axios'
 import { urlApi } from '../supports/constants/urlApi'
 import Loading from '../components/Loading'
-
+import {Link} from 'react-router-dom'
 
 
 class ProductList extends React.Component{
@@ -13,7 +13,7 @@ class ProductList extends React.Component{
     }
     
     componentDidMount(){
-        setTimeout(this.getDataProducts,2000)
+        this.getDataProducts()
         // this.getDataProducts()
     }
 
@@ -32,11 +32,14 @@ class ProductList extends React.Component{
     renderDataToJsx = () => {
         return this.state.data.map((val) => {
             return(
-                <div className="my-card col-sm-2 col-5 mr-3 mt-3">
-                    <img src={val.img_url} width='100%' alt=""/>
+                <div  key={val.id} className="my-card col-sm-2 col-5 mr-3 mt-3">
+                    <Link to={'/product-detail/' + val.id}>
+                        <img src={val.img_url} width='100%' alt=""/>
+                    </Link>
                     <div className='farmhub-product-title'>{val.name}</div>
                     <div className='farmhub-product-price'>Rp. {val.price}</div>
                     <div className='farmhub-product-location'>Jakarta Selatan</div>
+                     
                 </div>
             )
         })
