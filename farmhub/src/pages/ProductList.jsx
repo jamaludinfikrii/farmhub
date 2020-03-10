@@ -1,11 +1,59 @@
 import React from 'react'
 import { FormGroup,Label,Input } from 'reactstrap'
 import './../supports/css/ProductList.css'
+import Axios from 'axios'
+import { urlApi } from '../supports/constants/urlApi'
+import Loading from '../components/Loading'
 
 
 
 class ProductList extends React.Component{
+    state={
+        data : null
+    }
+    
+    componentDidMount(){
+        setTimeout(this.getDataProducts,2000)
+        // this.getDataProducts()
+    }
+
+    getDataProducts = () => {
+        Axios.get(urlApi + 'products')
+        .then((res) =>{ 
+            console.log(res)
+            this.setState({data : res.data})
+        })
+        .catch((err) => {
+            
+            console.log(err)
+        })
+    }
+
+    renderDataToJsx = () => {
+        return this.state.data.map((val) => {
+            return(
+                <div className="my-card col-sm-2 col-5 mr-3 mt-3">
+                    <img src={val.img_url} width='100%' alt=""/>
+                    <div className='farmhub-product-title'>{val.name}</div>
+                    <div className='farmhub-product-price'>Rp. {val.price}</div>
+                    <div className='farmhub-product-location'>Jakarta Selatan</div>
+                </div>
+            )
+        })
+    }
+
+
     render(){
+        if(this.state.data === null){
+            return(
+                <Loading />
+            )
+        }
+        if(this.state.data.length === 0){
+            return(
+                <h1>Data Masih Kosong</h1>
+            )
+        }
         return(
             <div className='container-fluid'>
                 <div className='row'>
@@ -85,113 +133,7 @@ class ProductList extends React.Component{
 
                     <div className="col-sm-10">
                         <div className="row justify-content-center">
-                            <div className="my-card col-sm-2 col-5 mr-3 mt-3">
-                                <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2018/11/7/4503850/4503850_cce2c93e-03a7-41c1-a3ed-75a02be6431f_480_480.jpg" width='100%' alt=""/>
-                                <div className='farmhub-product-title'>Apel Fuji</div>
-                                <div className='farmhub-product-price'>Rp. 30.000</div>
-                                <div className='farmhub-product-location'>Jakarta Selatan</div>
-                            </div>
-                            <div className="my-card col-sm-2 col-5 mr-3 mt-3">
-                                <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2018/11/7/4503850/4503850_cce2c93e-03a7-41c1-a3ed-75a02be6431f_480_480.jpg" width='100%' alt=""/>
-                                <div className='farmhub-product-title'>Apel Fuji</div>
-                                <div className='farmhub-product-price'>Rp. 30.000</div>
-                                <div className='farmhub-product-location'>Jakarta Selatan</div>
-                            </div>
-                            <div className="my-card col-sm-2 col-5 mr-3 mt-3">
-                                <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2018/11/7/4503850/4503850_cce2c93e-03a7-41c1-a3ed-75a02be6431f_480_480.jpg" width='100%' alt=""/>
-                                <div className='farmhub-product-title'>Apel Fuji</div>
-                                <div className='farmhub-product-price'>Rp. 30.000</div>
-                                <div className='farmhub-product-location'>Jakarta Selatan</div>
-                            </div>
-                            <div className="my-card col-sm-2 col-5 mr-3 mt-3">
-                                <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2018/11/7/4503850/4503850_cce2c93e-03a7-41c1-a3ed-75a02be6431f_480_480.jpg" width='100%' alt=""/>
-                                <div className='farmhub-product-title'>Apel Fuji</div>
-                                <div className='farmhub-product-price'>Rp. 30.000</div>
-                                <div className='farmhub-product-location'>Jakarta Selatan</div>
-                            </div>
-                            <div className="my-card col-sm-2 col-5 mr-3 mt-3">
-                                <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2018/11/7/4503850/4503850_cce2c93e-03a7-41c1-a3ed-75a02be6431f_480_480.jpg" width='100%' alt=""/>
-                                <div className='farmhub-product-title'>Apel Fuji</div>
-                                <div className='farmhub-product-price'>Rp. 30.000</div>
-                                <div className='farmhub-product-location'>Jakarta Selatan</div>
-                            </div>
-                            <div className="my-card col-sm-2 col-5 mr-3 mt-3">
-                                <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2018/11/7/4503850/4503850_cce2c93e-03a7-41c1-a3ed-75a02be6431f_480_480.jpg" width='100%' alt=""/>
-                                <div className='farmhub-product-title'>Apel Fuji</div>
-                                <div className='farmhub-product-price'>Rp. 30.000</div>
-                                <div className='farmhub-product-location'>Jakarta Selatan</div>
-                            </div>
-                            <div className="my-card col-sm-2 col-5 mr-3 mt-3">
-                                <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2018/11/7/4503850/4503850_cce2c93e-03a7-41c1-a3ed-75a02be6431f_480_480.jpg" width='100%' alt=""/>
-                                <div className='farmhub-product-title'>Apel Fuji</div>
-                                <div className='farmhub-product-price'>Rp. 30.000</div>
-                                <div className='farmhub-product-location'>Jakarta Selatan</div>
-                            </div>
-                            <div className="my-card col-sm-2 col-5 mr-3 mt-3">
-                                <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2018/11/7/4503850/4503850_cce2c93e-03a7-41c1-a3ed-75a02be6431f_480_480.jpg" width='100%' alt=""/>
-                                <div className='farmhub-product-title'>Apel Fuji</div>
-                                <div className='farmhub-product-price'>Rp. 30.000</div>
-                                <div className='farmhub-product-location'>Jakarta Selatan</div>
-                            </div>
-                            <div className="my-card col-sm-2 col-5 mr-3 mt-3">
-                                <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2018/11/7/4503850/4503850_cce2c93e-03a7-41c1-a3ed-75a02be6431f_480_480.jpg" width='100%' alt=""/>
-                                <div className='farmhub-product-title'>Apel Fuji</div>
-                                <div className='farmhub-product-price'>Rp. 30.000</div>
-                                <div className='farmhub-product-location'>Jakarta Selatan</div>
-                            </div>
-                            <div className="my-card col-sm-2 col-5 mr-3 mt-3">
-                                <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2018/11/7/4503850/4503850_cce2c93e-03a7-41c1-a3ed-75a02be6431f_480_480.jpg" width='100%' alt=""/>
-                                <div className='farmhub-product-title'>Apel Fuji</div>
-                                <div className='farmhub-product-price'>Rp. 30.000</div>
-                                <div className='farmhub-product-location'>Jakarta Selatan</div>
-                            </div>
-                            <div className="my-card col-sm-2 col-5 mr-3 mt-3">
-                                <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2018/11/7/4503850/4503850_cce2c93e-03a7-41c1-a3ed-75a02be6431f_480_480.jpg" width='100%' alt=""/>
-                                <div className='farmhub-product-title'>Apel Fuji</div>
-                                <div className='farmhub-product-price'>Rp. 30.000</div>
-                                <div className='farmhub-product-location'>Jakarta Selatan</div>
-                            </div>
-                            <div className="my-card col-sm-2 col-5 mr-3 mt-3">
-                                <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2018/11/7/4503850/4503850_cce2c93e-03a7-41c1-a3ed-75a02be6431f_480_480.jpg" width='100%' alt=""/>
-                                <div className='farmhub-product-title'>Apel Fuji</div>
-                                <div className='farmhub-product-price'>Rp. 30.000</div>
-                                <div className='farmhub-product-location'>Jakarta Selatan</div>
-                            </div>
-                            <div className="my-card col-sm-2 col-5 mr-3 mt-3">
-                                <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2018/11/7/4503850/4503850_cce2c93e-03a7-41c1-a3ed-75a02be6431f_480_480.jpg" width='100%' alt=""/>
-                                <div className='farmhub-product-title'>Apel Fuji</div>
-                                <div className='farmhub-product-price'>Rp. 30.000</div>
-                                <div className='farmhub-product-location'>Jakarta Selatan</div>
-                            </div>
-                            <div className="my-card col-sm-2 col-5 mr-3 mt-3">
-                                <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2018/11/7/4503850/4503850_cce2c93e-03a7-41c1-a3ed-75a02be6431f_480_480.jpg" width='100%' alt=""/>
-                                <div className='farmhub-product-title'>Apel Fuji</div>
-                                <div className='farmhub-product-price'>Rp. 30.000</div>
-                                <div className='farmhub-product-location'>Jakarta Selatan</div>
-                            </div>
-                            <div className="my-card col-sm-2 col-5 mr-3 mt-3">
-                                <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2018/11/7/4503850/4503850_cce2c93e-03a7-41c1-a3ed-75a02be6431f_480_480.jpg" width='100%' alt=""/>
-                                <div className='farmhub-product-title'>Apel Fuji</div>
-                                <div className='farmhub-product-price'>Rp. 30.000</div>
-                                <div className='farmhub-product-location'>Jakarta Selatan</div>
-                            </div>
-                            <div className="my-card col-sm-2 col-5 mr-3 mt-3">
-                                <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2018/11/7/4503850/4503850_cce2c93e-03a7-41c1-a3ed-75a02be6431f_480_480.jpg" width='100%' alt=""/>
-                                <div className='farmhub-product-title'>Apel Fuji</div>
-                                <div className='farmhub-product-price'>Rp. 30.000</div>
-                                <div className='farmhub-product-location'>Jakarta Selatan</div>
-                            </div>
-                            <div className="my-card col-sm-2 col-5 mr-3 mt-3">
-                                <img src="https://ecs7.tokopedia.net/img/cache/700/product-1/2018/11/7/4503850/4503850_cce2c93e-03a7-41c1-a3ed-75a02be6431f_480_480.jpg" width='100%' alt=""/>
-                                <div className='farmhub-product-title'>Apel Fuji</div>
-                                <div className='farmhub-product-price'>Rp. 30.000</div>
-                                <div className='farmhub-product-location'>Jakarta Selatan</div>
-                            </div>
-                            
-                            
-                            
-                            
-                            
+                            {this.renderDataToJsx()}
                         </div>
 
                     </div>

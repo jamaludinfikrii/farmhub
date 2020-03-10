@@ -5,10 +5,16 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem
+  NavItem,
+  UncontrolledDropdown,
+  DropdownMenu,
+  DropdownItem,
+  DropdownToggle,
+  NavLink
 } from 'reactstrap';
 
 import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2';
 
 
 class FarmHubNavbar extends React.Component{
@@ -18,6 +24,27 @@ class FarmHubNavbar extends React.Component{
 
     toggle = () => {
         this.setState({isOpen : !this.state.isOpen})
+    }
+    
+    onLogoutClick = () => {
+        Swal.fire({
+            title : "Logout",
+            text : "Are You Sure Want To Logout?",
+            icon : "question",
+            showCancelButton : true,
+            confirmButtonColor :"#3085d6",
+            cancelButtonColor :"#d33",
+            confirmButtonText : "Yes"
+        })
+        .then((val) => {
+            if(val.value){
+                localStorage.removeItem('id')
+                this.props.fnDeleteDataUser()
+                Swal.fire("you're Successfully Logout")
+                // delete data di app.js
+            }
+        })
+        console.log('masuk')
     }
 
     render(){
@@ -39,27 +66,47 @@ class FarmHubNavbar extends React.Component{
                                 <Link to='/login'>Login</Link>
                             </NavItem>
                             <NavItem>
-                                <Link to='/register'>Register</Link>
+                                <NavLink href='/register'>Register</NavLink>
                             </NavItem>
                         </Nav> 
                         :
                         <Nav navbar>
                             {
                                 this.props.dataUser.role === 'pembeli' ?
-                                <NavItem>
-                                    <Link to='/my-profile'>Cart</Link>
+                                <NavItem> 
+                                    <NavLink>
+                                        Cart
+                                    </NavLink>
+                                    {/* <Link to='/my-profile'>Cart</Link> */}
                                 </NavItem>
                                 :
                                 this.props.dataUser.role === 'penjual' ?
-                                <NavItem>
-                                    <Link to='/my-profile'>Post Your Product</Link>
+                                <NavItem> 
+                                    <NavLink>
+                                        Post Product
+                                    </NavLink>
+                                    {/* <Link to='/my-profile'>Post Your Product</Link> */}
                                 </NavItem>
                                 :
                                 null
                             }
-                            <NavItem className='ml-md-3'>
-                                <Link to='/my-profile'>Hello , {this.props.dataUser.email}</Link>
-                            </NavItem>
+                            <UncontrolledDropdown nav inNavbar>
+                                <DropdownToggle nav caret>
+                                   Hello, {this.props.dataUser.email}
+                                </DropdownToggle>
+                                <DropdownMenu right>
+                                    <DropdownItem>
+                                    Change Profile
+                                    </DropdownItem>
+                                    <DropdownItem>
+                                    History
+                                    </DropdownItem>
+                                    <DropdownItem divider />
+                                    <DropdownItem onClick={this.onLogoutClick}>
+                                    Logout
+                                    </DropdownItem>
+                                </DropdownMenu>
+                            </UncontrolledDropdown>
                         </Nav> 
                     }
                     </Collapse>

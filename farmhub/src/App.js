@@ -25,17 +25,23 @@ class App extends React.Component{
         // Mengambil id di localstorage
         var id = localStorage.getItem('id')
 
-        // Ambil data kembali
-        Axios.get(urlApi + 'users/' + id)
-        .then((res) => {
-            this.setState({dataUser : res.data})
-        } )
-        .catch((err) => {
-            console.log(err)
-        })
+        if(id !== null){
+            // Ambil data kembali
+            Axios.get(urlApi + 'users/' + id)
+            .then((res) => {
+                this.setState({dataUser : res.data})
+            } )
+            .catch((err) => {
+                console.log(err)
+            })
+
+        }
     }
 
 
+    onDeleteDataUser = () => {
+        this.setState({dataUser : null})
+    }
 
 
     onChangeDataUser = (data) => {
@@ -45,7 +51,7 @@ class App extends React.Component{
         
         return(
             <div>
-                <FarmHubNavbar dataUser={this.state.dataUser} />
+                <FarmHubNavbar fnDeleteDataUser={this.onDeleteDataUser} dataUser={this.state.dataUser} />
                 <div className='container-fluid my-5 pb-5' style={{minHeight:'80vh'}}>
                     <Switch>
                     
@@ -65,7 +71,7 @@ class App extends React.Component{
                             <SelectRole dataUser={this.state.dataUser}/>
                         </Route>
                         <Route path='/complete-your-profile'>
-                            <CompleteYourProfile/>
+                            <CompleteYourProfile dataUser={this.state.dataUser} />
                         </Route>
                         <Route path='/latihan-fake-api'>
                             <LatihanFakeApi/>

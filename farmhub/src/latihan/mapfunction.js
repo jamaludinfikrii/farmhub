@@ -62,3 +62,18 @@ console.log(output)
 
 
 
+
+var arrr = [1,2,3,4]
+var data =[]
+
+arrr.forEach((val,index)=> {
+    data.push(val + index)
+})
+
+
+var obj ={}
+
+obj['nama'] = 'fikri'
+console.log(obj)
+
+{nama : 'fikri'}
