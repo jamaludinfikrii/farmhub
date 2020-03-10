@@ -12,11 +12,20 @@
     {
       "email": "fikri@fikriya.com",
       "password": "123",
-      "role": "",
+      "role": "penjual",
       "fullname": "",
       "address": "",
       "phone_number": "",
       "id": 2
+    },
+    {
+      "email": "fikri2@fikri.com",
+      "password": "123123",
+      "role": "pembeli",
+      "fullname": "Jamaludin Fikri",
+      "address": "Bandung",
+      "phone_number": "0822268402309",
+      "id": 3
     }
   ],
   "products": [
@@ -25,9 +34,36 @@
       "name": "Apel Fuji",
       "price": "20000",
       "stock": 20,
-      "img_url": "url_image",
+      "img_url": "https://ecs7.tokopedia.net/img/cache/700/product-1/2019/11/5/373801195/373801195_36697d13-fce2-49a1-a26a-19cc570a377d_554_554.jpg",
       "id_penjual": 1,
       "deskripsi": "Apel Import Berkualitas"
+    },
+    {
+      "id": 2,
+      "name": "Jeruk Bali",
+      "price": "15000",
+      "stock": 20,
+      "img_url": "https://ecs7.tokopedia.net/img/cache/700/product-1/2019/11/7/37620200/37620200_6a68dfc7-8564-4893-bcdc-9772908a713f_900_900",
+      "id_penjual": 1,
+      "deskripsi": "Jeruk Bali Berkualitas"
+    },
+    {
+      "id": 3,
+      "name": "Mangga",
+      "price": "30000",
+      "stock": 10,
+      "img_url": "https://s0.bukalapak.com/img/5021243332/w-1000/bibit_buah_mangga_harum_manis.png",
+      "id_penjual": 2,
+      "deskripsi": "Mangga Enak"
+    },
+    {
+      "id": 4,
+      "name": "Leci",
+      "price": "14000",
+      "stock": 5,
+      "img_url": "https://cf.shopee.co.id/file/e4c65bb6c6de5b8a3eefc459153f6c65",
+      "id_penjual": 2,
+      "deskripsi": "Leci Asam Manis"
     }
   ]
 }
