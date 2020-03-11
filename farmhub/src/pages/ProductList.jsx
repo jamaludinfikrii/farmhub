@@ -1,4 +1,4 @@
-import React from 'react'
+import React , {Component} from 'react'
 import { FormGroup,Label,Input } from 'reactstrap'
 import './../supports/css/ProductList.css'
 import Axios from 'axios'
@@ -7,24 +7,37 @@ import Loading from '../components/Loading'
 import {Link} from 'react-router-dom'
 
 
-class ProductList extends React.Component{
+class ProductList extends Component{
     state={
-        data : null
+        data : null,
+        dataPenjual : null
     }
     
+    // Sekali setelah render pertama
     componentDidMount(){
         this.getDataProducts()
-        // this.getDataProducts()
+        this.getDataPenjual()
     }
 
     getDataProducts = () => {
         Axios.get(urlApi + 'products')
         .then((res) =>{ 
-            console.log(res)
+            console.log(res.data)
             this.setState({data : res.data})
         })
         .catch((err) => {
             
+            console.log(err)
+        })
+    }
+
+    getDataPenjual = () => {
+        Axios.get(urlApi + 'users?role=penjual')
+        .then((res) => {
+            this.setState({dataPenjual : res.data})
+            console.log(res.data)
+        })
+        .catch((err) => {
             console.log(err)
         })
     }
@@ -65,7 +78,7 @@ class ProductList extends React.Component{
                         <div className='my-fixed-filter '>
                             <div className='my-card p-3'>
                                 <div className="farmhub-product-title">
-                                    Filter By Category
+                                    Filter By Category {this.props.dariRegister}
                                 </div>
                                 <div className='farmhub-product-location'>
                                     <FormGroup check>

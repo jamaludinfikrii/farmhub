@@ -19,7 +19,7 @@ import Swal from 'sweetalert2';
 
 class FarmHubNavbar extends React.Component{
     state = {
-        isOpen : false
+        isOpen : true
     }
 
     toggle = () => {

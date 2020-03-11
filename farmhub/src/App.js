@@ -13,9 +13,13 @@ import Axios from 'axios'
 import { urlApi } from './supports/constants/urlApi'
 import PageNotFound from './pages/PageNotFound'
 
+// Sediakan penampung di app.js
+// sediakan function untuk update penampung di app.js kemudian kirim ke component pengirim
 class App extends React.Component{
     state = {
         dataUser : null,
+        nama : 'fikri',
+        tampung : null
     }
 
     // Setelah Render Pertamaa
@@ -39,6 +43,11 @@ class App extends React.Component{
     }
 
 
+    onTampungData = (param) => {
+        this.setState({tampung : param})
+    }
+
+
     onDeleteDataUser = () => {
         this.setState({dataUser : null})
     }
@@ -56,13 +65,13 @@ class App extends React.Component{
                     <Switch>
                     
                         <Route path='/' exact>
-                            <ProductList/>
+                            <ProductList dariRegister={this.state.tampung}/>
                         </Route>
                         <Route path='/login'>
                             <Login bebas={this.onChangeDataUser} />    
                         </Route>
                         <Route path='/register'>
-                            <Register/>
+                            <Register fnKirimData={this.onTampungData}/>
                         </Route>
                         <Route path='/product-detail'>
                             <ProductDetail/>

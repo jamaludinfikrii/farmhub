@@ -5,22 +5,37 @@ import Loading from '../components/Loading'
 
 class ProductDetail extends React.Component{
     state={
-        data : null
+        data : null,
+        dataPenjual : null
     }
     componentDidMount(){
-        this.getDataProductDetail()
+        var id =  window.location.pathname.split('/')[2]
+        this.getDataProductDetail(id)
     }
 
-    getDataProductDetail = () => {
-        Axios.get(urlApi+'products/4')
+    getDataProductDetail = (param) => {
+    Axios.get(urlApi+'products/' + param)
         .then((res) => {
+            // console.log(res.data.id_penjual)
+            this.getDataPenjual(res.data.id_penjual)
             this.setState({data :res.data})
         })
     }
 
+    getDataPenjual = (id_penjual) => {
+        Axios.get(urlApi +'users/' + id_penjual)
+        .then((res) => {
+            console.log(res)
+            this.setState({dataPenjual : res.data})
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }   
+
 
     render(){
-        if(this.state.data === null){
+        if(this.state.data === null || this.state.dataPenjual === null){
             return(
                 <Loading />
             )
@@ -42,6 +57,10 @@ class ProductDetail extends React.Component{
                         </h4>
                         <p style={{color:'#25282b'}}>
                             Stock : {this.state.data.stock}
+                        </p>
+
+                        <p style={{color:'#25282b',cursor:'pointer',textDecoration:'underline'}}>
+                            {this.state.dataPenjual.fullname} ~ {this.state.dataPenjual.address}
                         </p>
 
 

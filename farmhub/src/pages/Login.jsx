@@ -6,7 +6,8 @@ import { urlApi } from '../supports/constants/urlApi'
 
 class Login extends React.Component{
     state = {
-        isComplete : null
+        isComplete : null,
+        isClicked : false
     }
     onLoginBtnClick = () => {
         let inputEmail = this.refs.email.value
@@ -18,6 +19,8 @@ class Login extends React.Component{
                 if(res.data.length > 0){
                     console.log(res)
                     // Login Success
+
+                    // kirim data user ke app.js
                     var dataUser = res.data[0]
                     this.props.bebas(dataUser)
 
@@ -70,6 +73,15 @@ class Login extends React.Component{
                         <button onClick={this.onLoginBtnClick} className='mt-3 btn btn-primary'>
                             Login
                         </button>
+
+                       {/* {
+                           !this.state.isClicked ? 
+                            <button onClick={() => this.setState({isClicked : true})}  className='btn btn-primary'>
+                            Latihan
+                            </button>
+                            :
+                            'loading'
+                        } */}
                     </div>
                 </div>
             </div>

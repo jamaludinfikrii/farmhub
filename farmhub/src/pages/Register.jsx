@@ -93,6 +93,9 @@ class Register extends React.Component{
                         <button onClick={this.registerClick} className='mt-3 btn btn-primary'>
                             Register
                         </button>
+                        <button onClick={ () => this.props.fnKirimData('fikri')}>
+                            kirim ke product list
+                        </button>
                         {this.renderError()}
                     </div>
                 </div>

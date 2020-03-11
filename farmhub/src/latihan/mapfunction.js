@@ -77,3 +77,26 @@ obj['nama'] = 'fikri'
 console.log(obj)
 
 {nama : 'fikri'}
+
+
+
+var product = {
+    deskripsi: "Apel Import Berkualitas",
+    id: 1,
+    id_penjual: 1,
+    img_url: "https://ecs7.tokopedia.net/img/cache/700/product-1/2019/11/5/373801195/373801195_36697d13-fce2-49a1-a26a-19cc570a377d_554_554.jpg",
+    name: "Apel Fuji",
+    price: "20000",
+    stock: 20
+}
+
+
+var penjual = {
+    address: "bandung",
+    email: "fikri@fikri.com",
+    fullname: "jamaludin fikri",
+    id: 1,
+    password: "123123",
+    phone_number: "08234723847",
+    role: "penjual",
+}
