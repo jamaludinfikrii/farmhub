@@ -13,7 +13,6 @@ import {
   NavLink
 } from 'reactstrap';
 
-// import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2';
 
 
@@ -81,12 +80,21 @@ class FarmHubNavbar extends React.Component{
                                 </NavItem>
                                 :
                                 this.props.dataUser.role === 'penjual' ?
-                                <NavItem> 
-                                    <NavLink href='/post-product'>
-                                        Post Product
-                                    </NavLink>
-                                    {/* <Link to='/my-profile'>Post Your Product</Link> */}
-                                </NavItem>
+                               
+                                    <UncontrolledDropdown nav inNavbar>
+                                        <DropdownToggle nav caret>
+                                            Menu
+                                        </DropdownToggle>
+                                        <DropdownMenu>
+                                            <DropdownItem href='/post-product'>
+                                                Post Product
+                                            </DropdownItem>
+                                            <DropdownItem href='/manage-product'>
+                                                Manage Product
+                                            </DropdownItem>
+                                        </DropdownMenu>
+                                    </UncontrolledDropdown>
+                             
                                 :
                                 null
                             }

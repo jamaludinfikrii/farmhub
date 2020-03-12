@@ -11,11 +11,18 @@ class Loading extends Component {
         this.handleTooLongLoading()
     }
     handleTooLongLoading = () => {
-        setTimeout(
+        this.timer = setTimeout(
             () => this.setState({tooLong : true}),
             10000
         )
     }
+
+    componentWillUnmount(){
+        clearInterval(this.timer)
+    }
+    
+
+
 
     render() {
         return (

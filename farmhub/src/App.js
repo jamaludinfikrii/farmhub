@@ -14,6 +14,7 @@ import { urlApi } from './supports/constants/urlApi'
 import PageNotFound from './pages/PageNotFound'
 import PostProduct from './pages/PostProduct'
 import SellerDetail from './pages/SellerDetail'
+import ManageProduct from './pages/ManageProduct'
 
 // Sediakan penampung di app.js
 // sediakan function untuk update penampung di app.js kemudian kirim ke component pengirim
@@ -76,7 +77,7 @@ class App extends React.Component{
                             <Register fnKirimData={this.onTampungData}/>
                         </Route>
                         <Route path='/product-detail'>
-                            <ProductDetail/>
+                            <ProductDetail user={this.state.dataUser}/>
                         </Route>
                         <Route path='/select-role'>
                             <SelectRole dataUser={this.state.dataUser}/>
@@ -92,6 +93,9 @@ class App extends React.Component{
                         </Route>
                         <Route path='/seller-detail'>
                             <SellerDetail/>
+                        </Route>
+                        <Route path='/manage-product'>
+                            <ManageProduct/>
                         </Route>
                         <Route path='*'>
                             <PageNotFound />

@@ -58,6 +58,10 @@ class ProductList extends Component{
         })
     }
 
+    // componentWillUnmount(){
+    //     console.log('ini dari product list')
+    // }
+
 
     render(){
         if(this.state.data === null){

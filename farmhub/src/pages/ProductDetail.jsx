@@ -6,12 +6,15 @@ import {Link} from 'react-router-dom'
 class ProductDetail extends React.Component{
     state={
         data : null,
-        dataPenjual : null
+        dataPenjual : null,
+        dataUser : null
     }
     componentDidMount(){
         var id =  window.location.pathname.split('/')[2]
         this.getDataProductDetail(id)
     }
+
+    
 
     getDataProductDetail = (param) => {
     Axios.get(urlApi+'products/' + param)
@@ -33,8 +36,27 @@ class ProductDetail extends React.Component{
         })
     }   
 
+    fnRenderBtn = () => {
+        if(this.props.user !== null){
+            if(this.props.user.role === 'penjual'){
+                return(
+                    <button className='btn btn-success'>Gak Bisa Beli</button>
+                )
+            }else{
+                return(
+                    <button className='btn btn-success'>Add To Cart</button>
+                )
+            }
+        }else{
+            return(
+                <button className='btn btn-success'>Anda Harus Login Untuk Beli</button>
+            )
+        }
+    }
+
 
     render(){
+        console.log('ini render')
         if(this.state.data === null || this.state.dataPenjual === null){
             return(
                 <Loading />
@@ -67,8 +89,11 @@ class ProductDetail extends React.Component{
 
 
                         <p>{this.state.data.deskripsi}</p>
-                        <div className='text-right'>
-                            <button className='btn btn-success'>Add To Cart</button>
+                        <div className='text-right'>{
+                            this.fnRenderBtn()
+                            
+                        }
+                            
                         </div>
                     </div>
                 </div>
