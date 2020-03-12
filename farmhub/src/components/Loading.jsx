@@ -27,8 +27,8 @@ class Loading extends Component {
                     <Loader 
                         type='ThreeDots'
                         color='#3085d6'
-                        height = {100}
-                        width = {100}
+                        height={100}
+                        width={100}
                     />
 
                 }

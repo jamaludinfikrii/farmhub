@@ -13,7 +13,7 @@ import {
   NavLink
 } from 'reactstrap';
 
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2';
 
 
@@ -56,14 +56,14 @@ class FarmHubNavbar extends React.Component{
                     <Collapse isOpen={this.state.isOpen} navbar>
                     <Nav className="mr-auto" navbar> 
                         <NavItem>
-                            <Link to='/' >Products</Link >
+                            {/* <Link to='/' >Products</Link > */}
                         </NavItem>
                     </Nav>
                     {
                         this.props.dataUser === null ?
                         <Nav navbar>
                             <NavItem>
-                                <Link to='/login'>Login</Link>
+                                <NavLink href='/login'>Login</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink href='/register'>Register</NavLink>
@@ -82,7 +82,7 @@ class FarmHubNavbar extends React.Component{
                                 :
                                 this.props.dataUser.role === 'penjual' ?
                                 <NavItem> 
-                                    <NavLink>
+                                    <NavLink href='/post-product'>
                                         Post Product
                                     </NavLink>
                                     {/* <Link to='/my-profile'>Post Your Product</Link> */}

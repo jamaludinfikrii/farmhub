@@ -2,7 +2,7 @@ import React from 'react'
 import Axios from 'axios'
 import { urlApi } from '../supports/constants/urlApi'
 import Loading from '../components/Loading'
-
+import {Link} from 'react-router-dom'
 class ProductDetail extends React.Component{
     state={
         data : null,
@@ -59,9 +59,11 @@ class ProductDetail extends React.Component{
                             Stock : {this.state.data.stock}
                         </p>
 
-                        <p style={{color:'#25282b',cursor:'pointer',textDecoration:'underline'}}>
-                            {this.state.dataPenjual.fullname} ~ {this.state.dataPenjual.address}
-                        </p>
+                        <Link to={'/seller-detail/' + this.state.data.id_penjual}>
+                            <span style={{color:'#25282b',cursor:'pointer',textDecoration:'underline'}}>
+                                {this.state.dataPenjual.fullname} ~ {this.state.dataPenjual.address}
+                            </span>
+                        </Link>
 
 
                         <p>{this.state.data.deskripsi}</p>

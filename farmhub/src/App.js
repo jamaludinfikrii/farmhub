@@ -12,6 +12,8 @@ import CompleteYourProfile from './pages/CompleteYourProfile'
 import Axios from 'axios'
 import { urlApi } from './supports/constants/urlApi'
 import PageNotFound from './pages/PageNotFound'
+import PostProduct from './pages/PostProduct'
+import SellerDetail from './pages/SellerDetail'
 
 // Sediakan penampung di app.js
 // sediakan function untuk update penampung di app.js kemudian kirim ke component pengirim
@@ -84,6 +86,12 @@ class App extends React.Component{
                         </Route>
                         <Route path='/latihan-fake-api'>
                             <LatihanFakeApi/>
+                        </Route>
+                        <Route path='/post-product'>
+                            <PostProduct/>
+                        </Route>
+                        <Route path='/seller-detail'>
+                            <SellerDetail/>
                         </Route>
                         <Route path='*'>
                             <PageNotFound />
