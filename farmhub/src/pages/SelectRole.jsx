@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import { urlApi } from '../supports/constants/urlApi';
+import PageNotFound from './PageNotFound';
 
 
 class SelectRole extends Component {
@@ -24,6 +25,13 @@ class SelectRole extends Component {
     }
 
     render() {
+        if(this.props.dataUser){
+            if(this.props.dataUser.role){
+                return(
+                    <PageNotFound/>
+                )
+            }
+        }
         return (
             <div className='row justify-content-center' >
                 <div className="col-md-3 my-card p-5">

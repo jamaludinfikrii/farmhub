@@ -3,7 +3,7 @@ import FarmHubNavbar from './components/Navbar'
 import FooterFarmHub from './components/Footer'
 import ProductList from './pages/ProductList'
 import Login from './pages/Login'
-import { Route,Switch } from 'react-router-dom'
+import { Route,Switch,Link } from 'react-router-dom'
 import Register from './pages/Register'
 import ProductDetail from './pages/ProductDetail'
 import LatihanFakeApi from './pages/LatihanFakeApi'
@@ -15,6 +15,7 @@ import PageNotFound from './pages/PageNotFound'
 import PostProduct from './pages/PostProduct'
 import SellerDetail from './pages/SellerDetail'
 import ManageProduct from './pages/ManageProduct'
+import EditProduct from './pages/EditProduct'
 
 // Sediakan penampung di app.js
 // sediakan function untuk update penampung di app.js kemudian kirim ke component pengirim
@@ -59,15 +60,42 @@ class App extends React.Component{
     onChangeDataUser = (data) => {
         this.setState({dataUser : data})
     }
+
+    renderErrorMsg = () => {
+        if(this.state.dataUser){
+            if(!this.state.dataUser.role){
+               return(
+                <div className='row justify-content-center'>
+                    <div className='col-md-10 alert alert-danger'>
+                        Complete Your Profile <Link to='/select-role'>Here</Link> 
+                    </div>
+                </div>
+               ) 
+            }
+            if(!this.state.dataUser.fullname){
+                return(
+                 <div className='row justify-content-center'>
+                     <div className='col-md-10 alert alert-danger'>
+                         Complete Your Profile <Link to='/complete-your-profile'>Here</Link> 
+                     </div>
+                 </div>
+                ) 
+             }
+        }
+    }
+
     render(){
         
         return(
             <div>
                 <FarmHubNavbar fnDeleteDataUser={this.onDeleteDataUser} dataUser={this.state.dataUser} />
                 <div className='container-fluid my-5 pb-5' style={{minHeight:'80vh'}}>
+                    
                     <Switch>
                     
                         <Route path='/' exact>
+                            {
+                            this.renderErrorMsg()}
                             <ProductList dariRegister={this.state.tampung}/>
                         </Route>
                         <Route path='/login'>
@@ -96,6 +124,9 @@ class App extends React.Component{
                         </Route>
                         <Route path='/manage-product'>
                             <ManageProduct/>
+                        </Route>
+                        <Route path='/edit-data'>
+                            <EditProduct/>
                         </Route>
                         <Route path='*'>
                             <PageNotFound />

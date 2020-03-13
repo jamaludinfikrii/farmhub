@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import { urlApi } from '../supports/constants/urlApi';
 import Loading from '../components/Loading';
+import {Link} from 'react-router-dom'
 
 class ManageProduct extends Component {
     state= {
@@ -30,14 +31,16 @@ class ManageProduct extends Component {
                     <td>{index + 1}</td>
                     <td>{val.name}</td>
                     <td>Rp. {val.price}</td>
-                    <td>20</td>
+                    <td>{val.stock}</td>
                     <td>{val.deskripsi}</td>
                     <td><img src={val.img_url} width='50px' alt='broken'/></td>
                     <td>
                         <input type='button' className='btn btn-outline-danger' value='delete' />
                     </td>
                     <td>
-                        <input type='button' className='btn btn-outline-info' value='edit' />
+                        <Link to={'/edit-data/' + val.id}>
+                            <input type='button' className='btn btn-outline-info' value='edit' />
+                        </Link>
                     </td>
                 </tr>
             )

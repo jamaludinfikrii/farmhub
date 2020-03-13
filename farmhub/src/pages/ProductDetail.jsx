@@ -7,7 +7,9 @@ class ProductDetail extends React.Component{
     state={
         data : null,
         dataPenjual : null,
-        dataUser : null
+        dataUser : null,
+        qty : 1,
+        totalHarga : 0
     }
     componentDidMount(){
         var id =  window.location.pathname.split('/')[2]
@@ -21,7 +23,7 @@ class ProductDetail extends React.Component{
         .then((res) => {
             // console.log(res.data.id_penjual)
             this.getDataPenjual(res.data.id_penjual)
-            this.setState({data :res.data})
+            this.setState({data :res.data,totalHarga : res.data.price})
         })
     }
 
@@ -54,6 +56,17 @@ class ProductDetail extends React.Component{
         }
     }
 
+    onMinHandler = () => {
+        if(this.state.qty >= 2){
+            this.setState({qty : this.state.qty- 1,totalHarga : (this.state.qty-1) * this.state.data.price})
+        }
+    }
+
+    onPlusHandler = () => {
+        if(this.state.qty < this.state.data.stock){
+            this.setState({qty : this.state.qty+1,totalHarga : (this.state.qty+1) * this.state.data.price})
+        }
+    }
 
     render(){
         console.log('ini render')
@@ -89,7 +102,21 @@ class ProductDetail extends React.Component{
 
 
                         <p>{this.state.data.deskripsi}</p>
-                        <div className='text-right'>{
+                        <div className='my-2' >
+                            <span onClick={this.onMinHandler} className='btn btn-outline-danger mr-2'>
+                                -
+                            </span>
+                            <span>
+                            {this.state.qty}
+                            </span>
+                            <span onClick={this.onPlusHandler} className='btn btn-outline-primary ml-2'>
+                                +
+                            </span>
+                        </div>
+                        <div className='my-2' >
+                            <span>Total Harga = {this.state.totalHarga}</span>
+                        </div>
+                        <div >{
                             this.fnRenderBtn()
                             
                         }

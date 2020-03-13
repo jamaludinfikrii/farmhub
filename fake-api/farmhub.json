@@ -26,23 +26,50 @@
       "address": "Bandung",
       "phone_number": "0822268402309",
       "id": 3
+    },
+    {
+      "email": "fikriii@fikrii.com",
+      "password": "123",
+      "role": "penjual",
+      "fullname": "",
+      "address": "",
+      "phone_number": "",
+      "id": 4
+    },
+    {
+      "email": "aa@aa.com",
+      "password": "123",
+      "role": "pembeli",
+      "fullname": "aaa",
+      "address": "bandung",
+      "phone_number": "082378264",
+      "id": 5
+    },
+    {
+      "email": "bb@bb.com",
+      "password": "123",
+      "role": "penjual",
+      "fullname": "",
+      "address": "",
+      "phone_number": "",
+      "id": 6
     }
   ],
   "products": [
     {
       "id": 1,
-      "name": "Apel Fuji",
+      "name": "Apel Fuja",
       "price": "20000",
-      "stock": 20,
+      "stock": "20",
       "img_url": "https://ecs7.tokopedia.net/img/cache/700/product-1/2019/11/5/373801195/373801195_36697d13-fce2-49a1-a26a-19cc570a377d_554_554.jpg",
       "id_penjual": 1,
-      "deskripsi": "Apel Import Berkualitas"
+      "deskripsi": "Apel Import Berkualitassssssssssssss"
     },
     {
       "id": 2,
       "name": "Jeruk Bali",
       "price": "15000",
-      "stock": 20,
+      "stock": "22",
       "img_url": "https://ecs7.tokopedia.net/img/cache/700/product-1/2019/11/7/37620200/37620200_6a68dfc7-8564-4893-bcdc-9772908a713f_900_900",
       "id_penjual": 1,
       "deskripsi": "Jeruk Bali Berkualitas"
@@ -64,6 +91,60 @@
       "img_url": "https://cf.shopee.co.id/file/e4c65bb6c6de5b8a3eefc459153f6c65",
       "id_penjual": 2,
       "deskripsi": "Leci Asam Manis"
+    },
+    {
+      "id": 5,
+      "name": "Semangka",
+      "price": "24000",
+      "stock": 10,
+      "img_url": "https://img-z.okeinfo.net/library/images/2018/09/22/itxwi2ue55edsbyq333x_13682.jpg",
+      "id_penjual": 1,
+      "deskripsi": "Semangka Tanpa Biji"
+    },
+    {
+      "id": 6,
+      "name": "Alpukat Mentega",
+      "price": "35000",
+      "stock": 10,
+      "img_url": "https://tanamanmart.com/wp-content/uploads/2018/03/alpukat-mentega.png",
+      "id_penjual":2,
+      "deskripsi": "Alpukat Enak"
+    },
+    {
+      "id": 7,
+      "name": "Nanas",
+      "price": "35000",
+      "stock": 5,
+      "img_url": "https://awsimages.detik.net.id/community/media/visual/2017/04/04/800bbc40-5898-466e-bc75-3420c28aaa43_169.jpg?w=700&q=90",
+      "id_penjual":2,
+      "deskripsi": "nanas enak"
+    },
+    {
+      "id": 8,
+      "name": "Strawberry Merah",
+      "price": "40000",
+      "stock": 5,
+      "img_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/PerfectStrawberry.jpg/220px-PerfectStrawberry.jpg",
+      "id_penjual":2,
+      "deskripsi": "Mantap"
+    },
+    {
+      "id": 9,
+      "name": "Melon",
+      "price": "25000",
+      "stock": 5,
+      "img_url": "https://assets-a2.kompasiana.com/items/album/2019/05/16/11111-5cdcdd8895760e248a034322.jpg?t=o&v=350",
+      "id_penjual":2,
+      "deskripsi": "Mantap"
+    },
+    {
+      "id": 10,
+      "name": "Sirsak",
+      "price": "30000",
+      "stock": 20,
+      "img_url": "https://cdn2.tstatic.net/jogja/foto/bank/images/ilustrasi-sirsak.jpg",
+      "id_penjual":1,
+      "deskripsi": "Mantap"
     }
   ]
 }
