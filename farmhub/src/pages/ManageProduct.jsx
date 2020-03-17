@@ -3,6 +3,7 @@ import Axios from 'axios';
 import { urlApi } from '../supports/constants/urlApi';
 import Loading from '../components/Loading';
 import {Link} from 'react-router-dom'
+import Swal from 'sweetalert2';
 
 class ManageProduct extends Component {
     state= {
@@ -35,7 +36,7 @@ class ManageProduct extends Component {
                     <td>{val.deskripsi}</td>
                     <td><img src={val.img_url} width='50px' alt='broken'/></td>
                     <td>
-                        <input type='button' className='btn btn-outline-danger' value='delete' />
+                        <input type='button' onClick={() => this.onDeleteBtnClick(val.id,val.name)} className='btn btn-outline-danger' value='delete' />
                     </td>
                     <td>
                         <Link to={'/edit-data/' + val.id}>
@@ -44,6 +45,31 @@ class ManageProduct extends Component {
                     </td>
                 </tr>
             )
+        })
+    }
+
+    onDeleteBtnClick = (id,name) => {
+        Swal.fire({
+            title : "Delete Data",
+            text : "Are You Sure Want to Delete " + name + ' ?',
+            showCancelButton : true,
+            icon : "warning",
+            cancelButtonColor:'red'
+        })
+        .then((val) => {
+            if(val.value){
+                Axios.delete(urlApi + 'products/' +id)
+                .then((res) => {
+                    Swal.fire('Delete Data Success')
+                    this.getDataProduct()
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+            }else{
+                Swal.fire('oke ')
+
+            }
         })
     }
  

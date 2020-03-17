@@ -10,7 +10,8 @@ import {Link} from 'react-router-dom'
 class ProductList extends Component{
     state={
         data : null,
-        dataPenjual : null
+        dataPenjual : null,
+        search : ''
     }
     
     // Sekali setelah render pertama
@@ -42,20 +43,43 @@ class ProductList extends Component{
         })
     }
 
+    getDataAdress = (product) => {
+        var penjual =  this.state.dataPenjual.filter((user) => {
+            return user.id === product.id_penjual
+        })
+
+        return penjual[0].address
+    }
+
+
     renderDataToJsx = () => {
-        return this.state.data.map((val) => {
+        var dataFiltered = this.state.data.filter((prod) => {
+            return prod.name.toLowerCase().startsWith(this.state.search)
+        })
+        if(dataFiltered.length === 0){
+            return(
+                <h2>Data Not Found</h2>
+            )
+        }
+        return dataFiltered.map((val) => {
             return(
                 <div  key={val.id} className="my-card col-sm-2 col-5 mr-3 mt-3">
                     <Link to={'/product-detail/' + val.id}>
-                        <img src={val.img_url} width='100%' alt=""/>
+                        <img style={{height :'70%',objectFit:'cover',objectPosition:'top'}} src={val.img_url} width='100%' alt=""/>
                     </Link>
                     <div className='farmhub-product-title'>{val.name}</div>
                     <div className='farmhub-product-price'>Rp. {val.price}</div>
-                    <div className='farmhub-product-location'>Jakarta Selatan</div>
+                    <div className='farmhub-product-location'>{
+                        this.getDataAdress(val)
+                    }</div>
                      
                 </div>
             )
         })
+    }
+
+    onSearchChange = () => {
+        this.setState({search : this.refs.search.value})
     }
 
     // componentWillUnmount(){
@@ -64,7 +88,7 @@ class ProductList extends Component{
 
 
     render(){
-        if(this.state.data === null){
+        if(this.state.data === null || this.state.dataPenjual === null){
             return(
                 <Loading />
             )
@@ -80,6 +104,9 @@ class ProductList extends Component{
 
                     <div className="col-sm-2 mt-3">
                         <div className='my-fixed-filter '>
+                            <div className='my-card p-3 mb-3'>
+                                <input type="text" className='form-control' onChange={this.onSearchChange} placeholder='Search' ref='search'/>
+                            </div>
                             <div className='my-card p-3'>
                                 <div className="farmhub-product-title">
                                     Filter By Category {this.props.dariRegister}
@@ -152,7 +179,16 @@ class ProductList extends Component{
                     </div>
 
                     <div className="col-sm-10">
+                        {   this.state.data.length !== this.renderDataToJsx().length ?
+
+                            <div className='alert alert-primary'>
+                                found {this.renderDataToJsx().length} data
+                            </div>
+                            :
+                            null
+                        }
                         <div className="row justify-content-center">
+                            
                             {this.renderDataToJsx()}
                         </div>
 
