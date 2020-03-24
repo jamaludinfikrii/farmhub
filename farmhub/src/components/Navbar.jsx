@@ -73,7 +73,7 @@ class FarmHubNavbar extends React.Component{
                             {
                                 this.props.dataUser.role === 'pembeli' ?
                                 <NavItem> 
-                                    <NavLink>
+                                    <NavLink href='/cart'>
                                         Cart
                                     </NavLink>
                                     {/* <Link to='/my-profile'>Cart</Link> */}

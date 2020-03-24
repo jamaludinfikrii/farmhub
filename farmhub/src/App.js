@@ -16,6 +16,7 @@ import PostProduct from './pages/PostProduct'
 import SellerDetail from './pages/SellerDetail'
 import ManageProduct from './pages/ManageProduct'
 import EditProduct from './pages/EditProduct'
+import CartPages from './pages/CartPages'
 
 // Sediakan penampung di app.js
 // sediakan function untuk update penampung di app.js kemudian kirim ke component pengirim
@@ -124,6 +125,9 @@ class App extends React.Component{
                         </Route>
                         <Route path='/manage-product'>
                             <ManageProduct/>
+                        </Route>
+                        <Route path='/cart'>
+                            <CartPages/>
                         </Route>
                         <Route path='/edit-data'>
                             <EditProduct/>
