@@ -192,20 +192,31 @@
       "id_product": 7,
       "qty": 2,
       "id": 5
+    },
+    {
+      "id_pembeli": 3,
+      "id_product": 5,
+      "qty": 10,
+      "id": 6
+    },
+    {
+      "id_pembeli": 3,
+      "id_product": 3,
+      "qty": 10,
+      "id": 7
     }
   ],
-
-  "transaction":[
+  "transaction": [
     {
-      "id" : 1,
-      "date" : "tanggal",
-      "total" : 50000,
-      "id_pembeli" : 7,
+      "id": 1,
+      "date": "tanggal",
+      "total": 50000,
+      "id_pembeli": 7,
       "items": [
         {
-          "name" :"Alpukat Mentega",
+          "name": "Alpukat Mentega",
           "price": 100000,
-          "qty" : 3
+          "qty": 3
         }
       ]
     }

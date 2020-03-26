@@ -46,18 +46,33 @@ class ProductDetail extends React.Component{
 
 
     onBtnAddToCart = () => {
+
+       
+
+
         var dataCart = {
             id_pembeli : Number(localStorage.getItem('id')),
             id_product : Number(window.location.pathname.split('/')[2]),
             qty : this.state.qty
         }
 
-        Axios.get(urlApi+'cart?id_product=' + dataCart.id_product)
+        Axios.get(urlApi+'cart?id_product=' + dataCart.id_product + '&id_pembeli=' + dataCart.id_pembeli)
         .then((res) => {
+
+
+            // JSON SERVER ==> UPDATE DAN DELETE ITU BUTUH ID
+            // 
             if(res.data.length >0){
                 console.log(res.data)
                 let qty_lama = res.data[0].qty
                 let qty_baru = qty_lama + dataCart.qty
+
+                let stock = this.state.data.stock
+                if(qty_baru > stock){
+                    return Swal.fire('Stock Tidak Cukup')
+                }
+
+
 
                 Axios.patch(urlApi + 'cart/' + res.data[0].id,{qty : qty_baru})
                 .then((res) => {
