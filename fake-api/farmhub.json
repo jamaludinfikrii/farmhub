@@ -69,7 +69,7 @@
       "id": 1,
       "name": "Apel Fuja",
       "price": "20000",
-      "stock": "20",
+      "stock": 1,
       "img_url": "https://ecs7.tokopedia.net/img/cache/700/product-1/2019/11/5/373801195/373801195_36697d13-fce2-49a1-a26a-19cc570a377d_554_554.jpg",
       "id_penjual": 1,
       "deskripsi": "Apel Import Berkualitassssssssssssss"
@@ -87,7 +87,7 @@
       "id": 3,
       "name": "Mangga",
       "price": "30000",
-      "stock": 10,
+      "stock": 4,
       "img_url": "https://s0.bukalapak.com/img/5021243332/w-1000/bibit_buah_mangga_harum_manis.png",
       "id_penjual": 2,
       "deskripsi": "Mangga Enak"
@@ -96,7 +96,7 @@
       "id": 4,
       "name": "Leci",
       "price": "14000",
-      "stock": 5,
+      "stock": 1,
       "img_url": "https://cf.shopee.co.id/file/e4c65bb6c6de5b8a3eefc459153f6c65",
       "id_penjual": 2,
       "deskripsi": "Leci Asam Manis"
@@ -123,7 +123,7 @@
       "id": 7,
       "name": "Nanas",
       "price": "35000",
-      "stock": 5,
+      "stock": 4,
       "img_url": "https://awsimages.detik.net.id/community/media/visual/2017/04/04/800bbc40-5898-466e-bc75-3420c28aaa43_169.jpg?w=700&q=90",
       "id_penjual": 2,
       "deskripsi": "nanas enak"
@@ -202,23 +202,64 @@
     {
       "id_pembeli": 3,
       "id_product": 3,
-      "qty": 10,
+      "qty": 7,
       "id": 7
     }
   ],
   "transaction": [
     {
-      "id": 1,
-      "date": "tanggal",
-      "total": 50000,
-      "id_pembeli": 7,
+      "date": "2020-03-26T03:46:00.393Z",
+      "total": 572000,
+      "id_pembeli": 5,
       "items": [
         {
-          "name": "Alpukat Mentega",
-          "price": 100000,
+          "name": "Apel Fuja",
+          "price": 20000,
+          "qty": 19
+        },
+        {
+          "name": "Mangga",
+          "price": 30000,
+          "qty": 5
+        },
+        {
+          "name": "Leci",
+          "price": 14000,
           "qty": 3
         }
-      ]
+      ],
+      "id": 1
+    },
+    {
+      "date": "2020-03-26T03:49:03.092Z",
+      "total": 44000,
+      "id_pembeli": 5,
+      "items": [
+        {
+          "name": "Mangga",
+          "price": 30000,
+          "qty": 1
+        },
+        {
+          "name": "Leci",
+          "price": 14000,
+          "qty": 1
+        }
+      ],
+      "id": 2
+    },
+    {
+      "date": "2020-03-26T03:50:32.730Z",
+      "total": 35000,
+      "id_pembeli": 5,
+      "items": [
+        {
+          "name": "Nanas",
+          "price": 35000,
+          "qty": 1
+        }
+      ],
+      "id": 3
     }
   ]
 }

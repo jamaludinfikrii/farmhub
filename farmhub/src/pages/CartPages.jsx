@@ -2,11 +2,13 @@ import React, { Component } from 'react'
 import Loading from '../components/Loading'
 import Axios from 'axios'
 import { urlApi } from '../supports/constants/urlApi'
+import Swal from 'sweetalert2'
 
 export default class CartPages extends Component {
     state = {
         dataCart : null,
         dataProduct : null,
+        loading : false
     }
 
     componentDidMount(){
@@ -74,6 +76,77 @@ export default class CartPages extends Component {
 
     checkout = () => {
         if(window.confirm('Are You Sure Want To Checkout?')){
+            this.setState({loading : true})
+            let data_to_post = []
+            let data_all = []
+            this.state.dataProduct.forEach((val) => {
+                
+                var obj_all = val
+                obj_all.qty = Number(this.state.dataCart.filter((cart) => cart.id_product === val.id)[0].qty)
+ 
+                var obj_to_post = {}
+                obj_to_post.name = val.name
+                obj_to_post.price = Number(val.price)
+                obj_to_post.qty = Number(this.state.dataCart.filter((cart) => cart.id_product === val.id)[0].qty)
+    
+                data_to_post.push(obj_to_post)
+                data_all.push(obj_all)
+            })
+
+            let items = data_to_post
+
+            console.log(data_all)
+            let data = {
+                date : new Date(),
+                total : Number(this.printTotalBelanja()),
+                id_pembeli : Number(localStorage.getItem('id')),
+                items : items
+            }
+
+            Axios.post(urlApi + "transaction",data)
+            .then((res) => {
+                var error = false
+                data_all.forEach((val) => {
+                    let new_stock = val.stock - val.qty // 5
+                    Axios.patch(urlApi + 'products/' + val.id,{stock :new_stock })
+                    .then((res) =>{
+                        console.log(res)
+                    })
+
+                    .catch((err) => {
+                        error = true
+                        console.log(err)
+                    })
+                })
+
+                if(error === false){
+                    // hapus data di cart
+                    // id_cart
+                    this.state.dataCart.forEach((val) => {
+                        Axios.delete(urlApi + 'cart/' + val.id)
+                        .then((res) =>{
+                            console.log(res)
+                        })
+                        .catch((err) => {
+                            console.log(err)
+                        })
+                    })
+
+                    setTimeout(
+                        () => {
+                            Swal.fire("Checkout Berhasil")
+                            this.getDataCart()
+                        },
+                        1000
+                    )
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+
+            
+
             /**
              * {
       "id" : 1,
@@ -90,14 +163,7 @@ export default class CartPages extends Component {
     }
              */
 
-            // var data = {
-            //     date : new Date(),
-            //     total : ,
-            //     id_pembeli : localStorage.getItem('id'),
-            //     items : [
-            //         {}
-            //     ]
-            // }
+        
             // post data ke transaction
             // update stock
             // delete data di cart
@@ -107,6 +173,7 @@ export default class CartPages extends Component {
     printTotalBelanja = () =>{
         let data_gabungan = []
         this.state.dataProduct.forEach((val) => {
+            
             var new_obj = val
             new_obj.qty = this.state.dataCart.filter((cart) => cart.id_product === val.id)[0].qty
             new_obj.id_cart = this.state.dataCart.filter((cart) => cart.id_product === val.id)[0].id
@@ -174,6 +241,11 @@ export default class CartPages extends Component {
         if(this.state.dataCart.length === 0){
             return(
                 <h1>Cart MAsih Kosong</h1>
+            )
+        }
+        if(this.state.loading){
+            return(
+                <Loading />
             )
         }
         return (
