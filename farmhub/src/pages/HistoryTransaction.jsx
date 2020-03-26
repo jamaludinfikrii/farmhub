@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import Axios from 'axios'
 import { urlApi } from '../supports/constants/urlApi'
 import Loading from '../components/Loading'
-
+import moment from 'moment'
+import { Link } from 'react-router-dom'
 
 export default class HistoryTransaction extends Component {
     state ={
@@ -49,10 +50,14 @@ export default class HistoryTransaction extends Component {
                                     return(
                                         <tr key={val.id}> 
                                             <td>{index +1}</td>
-                                            <td>{val.date}</td>
+                                            <td>{moment(val.date).format('MMMM Do YYYY, h:mm:ss a') }</td>
                                             <td>{val.total}</td>
                                             <td>{val.items.length}</td>
-                                            <td><span style={{fontStyle:'italic',cursor:'pointer',fontWeight:'bold',textDecoration:'underline',color:'grey'}}>See Detail</span></td>
+                                            <td>
+                                                <Link to={'/history-detail/' + val.id}>
+                                                    <span style={{fontStyle:'italic',cursor:'pointer',fontWeight:'bold',textDecoration:'underline',color:'grey'}}>See Detail</span>
+                                                </Link>
+                                            </td>
                                         </tr>
                                     )
                                 })
