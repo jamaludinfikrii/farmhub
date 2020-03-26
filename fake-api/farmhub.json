@@ -150,7 +150,7 @@
       "id": 10,
       "name": "Sirsak",
       "price": "30000",
-      "stock": 20,
+      "stock": 17,
       "img_url": "https://cdn2.tstatic.net/jogja/foto/bank/images/ilustrasi-sirsak.jpg",
       "id_penjual": 1,
       "deskripsi": "Mantap"
@@ -260,6 +260,19 @@
         }
       ],
       "id": 3
+    },
+    {
+      "date": "2020-03-26T03:58:29.362Z",
+      "total": 90000,
+      "id_pembeli": 5,
+      "items": [
+        {
+          "name": "Sirsak",
+          "price": 30000,
+          "qty": 3
+        }
+      ],
+      "id": 4
     }
   ]
 }

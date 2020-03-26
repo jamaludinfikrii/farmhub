@@ -100,7 +100,7 @@ export default class CartPages extends Component {
                 date : new Date(),
                 total : Number(this.printTotalBelanja()),
                 id_pembeli : Number(localStorage.getItem('id')),
-                items : items
+                items : items // array / object ???
             }
 
             Axios.post(urlApi + "transaction",data)
@@ -145,6 +145,8 @@ export default class CartPages extends Component {
                 console.log(err)
             })
 
+            
+            // transaction dan transaction detail
             
 
             /**
@@ -240,12 +242,7 @@ export default class CartPages extends Component {
 
         if(this.state.dataCart.length === 0){
             return(
-                <h1>Cart MAsih Kosong</h1>
-            )
-        }
-        if(this.state.loading){
-            return(
-                <Loading />
+                <h1>Cart Masih Kosong</h1>
             )
         }
         return (
@@ -273,7 +270,12 @@ export default class CartPages extends Component {
                 </div>
 
                 <div className="row justify-content-center">
-                    <input onClick={this.checkout} type="button" value="checkout" className='btn btn-primary'/>
+                    {
+                        this.state.loading ? 
+                        <input disabled onClick={this.checkout} type="button" value="checkout" className='btn btn-primary'/>
+                        :
+                        <input onClick={this.checkout} type="button" value="checkout" className='btn btn-primary'/>
+                    }
                 </div>
             </div>
         )

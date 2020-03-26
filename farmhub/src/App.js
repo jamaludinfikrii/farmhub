@@ -17,6 +17,7 @@ import SellerDetail from './pages/SellerDetail'
 import ManageProduct from './pages/ManageProduct'
 import EditProduct from './pages/EditProduct'
 import CartPages from './pages/CartPages'
+import HistoryTransaction from './pages/HistoryTransaction'
 
 // Sediakan penampung di app.js
 // sediakan function untuk update penampung di app.js kemudian kirim ke component pengirim
@@ -132,6 +133,10 @@ class App extends React.Component{
                         <Route path='/edit-data'>
                             <EditProduct/>
                         </Route>
+                        <Route path='/history'>
+                            <HistoryTransaction/>
+                        </Route>
+
                         <Route path='*'>
                             <PageNotFound />
                         </Route>
