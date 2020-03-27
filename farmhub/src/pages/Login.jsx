@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom'
 import { urlApi } from '../supports/constants/urlApi'
 import { connect } from 'react-redux'
 
-class Login extends React.Component{
+ class Login extends React.Component{
     state = {
         isComplete : null,
         isClicked : false
@@ -54,6 +54,7 @@ class Login extends React.Component{
 
     }
     render(){
+        console.log(this.props.terserah)
         if(this.state.isComplete === false){
             return(
                 <Redirect to='/select-role' />
@@ -67,7 +68,7 @@ class Login extends React.Component{
         return(
             <div className='row justify-content-center h-100 align-items-center'>
                 <div className='my-card p-5 col-md-4'>
-                    <h3>Login Here</h3>
+        <h3>Login Here {this.props.terserah.num}</h3>
                     <input ref='email' type="text" className='form-control mt-3' placeholder='input your email '/>
                     <input ref='password' type="password" className='form-control mt-3' placeholder='type your password '/>
                     <div className='text-right'>
@@ -92,7 +93,7 @@ class Login extends React.Component{
 
 const mapStateToProps = (state) => {
     return{
-        counter : state.counter
+        terserah : state.counter
     }
 }
 
