@@ -2,13 +2,36 @@ import React, { Component } from 'react'
 import Axios from 'axios'
 import { urlApi } from '../supports/constants/urlApi'
 import Loading from '../components/Loading'
-
 export default class HistoryDetail extends Component {
     state = {
         items : null
     }
     componentDidMount(){
         this.getDataHistoryDetail()
+        this.getDataMovie()
+        this.rajaApi()
+    }
+
+
+    getDataMovie = () => {
+        Axios.get('http://www.omdbapi.com/?apikey=6a953632&s=harry')
+        .then((res) => {
+            console.log(res)
+        })
+    }
+
+
+    rajaApi = () => {
+        Axios.get('https://x.rajaapi.com/poe')
+        .then((res) => {
+            let url = 'https://x.rajaapi.com/MeP7c5ne'+res.data.token +'/m/wilayah/provinsi'
+            console.log(url)
+            Axios.get(url)
+            .then((res) => {
+                console.log(res)
+            })
+            console.log(res)
+        })
     }
 
     getDataHistoryDetail = () => {

@@ -19,6 +19,7 @@ import EditProduct from './pages/EditProduct'
 import CartPages from './pages/CartPages'
 import HistoryTransaction from './pages/HistoryTransaction'
 import HistoryDetail from './pages/HistoryDetail'
+import CounterWithRedux from './pages/CounterWithRedux'
 
 // Sediakan penampung di app.js
 // sediakan function untuk update penampung di app.js kemudian kirim ke component pengirim
@@ -139,6 +140,9 @@ class App extends React.Component{
                         </Route>
                         <Route path='/history-detail'>
                             <HistoryDetail/>
+                        </Route>
+                        <Route path='/counter'>
+                            <CounterWithRedux/>
                         </Route>
 
                         <Route path='*'>
