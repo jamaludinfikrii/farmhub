@@ -10,18 +10,28 @@
 
 
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
+
 
 class CounterWithRedux extends Component {
     render() {
+        console.log(this.props.bebas)
+        console.log(this.props.name)
         return (
             <div>
-                <h1>
-                    Ini Page Counter
-                </h1>
+                <h1>Ini Page Counter</h1>
             </div>
         )
     }
 }
 
+const mapStateToProps = (state) => {
+    return{
+        bebas : state.counter,
+        name : state.name
+    }
+}
 
-export default CounterWithRedux
+
+export default connect(mapStateToProps)(CounterWithRedux);
+

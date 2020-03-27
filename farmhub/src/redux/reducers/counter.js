@@ -1,5 +1,5 @@
 let COUNTER_STATE = {
-    num : 0
+    num : 'ini dari redux'
 }
 
 

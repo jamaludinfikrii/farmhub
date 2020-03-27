@@ -3,6 +3,7 @@ import Swal from 'sweetalert2'
 import Axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import { urlApi } from '../supports/constants/urlApi'
+import { connect } from 'react-redux'
 
 class Login extends React.Component{
     state = {
@@ -89,4 +90,10 @@ class Login extends React.Component{
     }
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+    return{
+        counter : state.counter
+    }
+}
+
+export default connect(mapStateToProps)(Login);
