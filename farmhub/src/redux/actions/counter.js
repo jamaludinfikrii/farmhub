@@ -14,7 +14,7 @@ export let decrement = () => {
 
 export let actionWithPayload = () => {
     return {
-        type : "BEBAS",
+        type : "ACTIONWITHPAYLOAD",
         payload : 'fikri'
     }
 }

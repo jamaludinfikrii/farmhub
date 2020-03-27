@@ -11,7 +11,7 @@
 
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {increment} from './../redux/actions/counter'
+import {increment,decrement,actionWithPayload} from './../redux/actions/counter'
 
 
 class CounterWithRedux extends Component {
@@ -21,9 +21,10 @@ class CounterWithRedux extends Component {
         return (
             <div>
                 <h1>Ini Page Counter</h1>
-
+                <input type="button" onClick={this.props.actionWithPayload} value="click me"/>
+                <span>{this.props.bebas.name}</span>
                 <center>
-                    <input type="button" value="-"/> 
+                    <input onClick={this.props.onClickMinus} type="button" value="-"/> 
                     <span>{this.props.bebas.angka}</span>
                     <input onClick={this.props.onClickPlus} type="button" value="+"/> 
                 </center>
@@ -41,7 +42,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps ={
-    onClickPlus : increment
+    onClickPlus : increment,
+    onClickMinus : decrement,
+    actionWithPayload
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(CounterWithRedux);
